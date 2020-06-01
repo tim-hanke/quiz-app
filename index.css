@@ -1,43 +1,74 @@
-header {
-    background-color: lightgray;
-    border: 1px solid black;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border-radius: 1%;
+    font-family: 'Roboto', sans-serif;
+    /* font-size: large; */
 }
 
-ul {
+body {
+    background-color: #008f95;
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width: 100%;
+}
+
+.quizTitle, .js-currentQuestion, .js-currentScore {
+    background-color: #e24e42;
+    border: 10px solid #e24e42;
+    border-radius: 5px;
+    margin: 5px;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+.statusBar {
+    display: flex;
     justify-content: space-around;
 }
 
-header ul li {
+.js-currentQuestion, .js-currentScore {
     list-style: none;
 }
 
-main {
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    background-color: lightgray;
-    border: 1px solid black;
+.js-questionBox {
+    background-color: #e9b000;
+    border: 10px solid #e9b000;
     border-radius: 5px;
+    margin: 5px;
+    max-width: 500px;
+    font-size: larger;
+}
+
+.js-questionBox * {
+    margin: 5px 0;
 }
 
 fieldset {
-    display: flex;
-    flex-direction: column;
     border: none;
 }
 
-input {
-    justify-self: start;
+.movieImg {
+    width: 100%;
+    border-radius: 5px;
 }
 
-button {
-    margin-left: auto;
+.button {
+    background-color: #eb6e80;
+    border: 10px solid #eb6e80;
+    border-radius: 5px;
+}
+
+.button:hover, .button:focus {
+    background-color: #d44c61;
+    border: 10px solid #d44c61;
 }
 

@@ -2,31 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="description" content="A quiz to fill in missing words from famous movie quotes.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Quote Quiz</title>
     <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Movie Quote Quiz</h1>
-        <ul>
-            <li>Question: 1/10</li>
-            <li>Score: 0</li>
+        <h1 class="quizTitle">Movie Quote Quiz</h1>
+        <ul class="statusBar">
+            <li class="js-currentQuestion">Question: 0/10</li>
+            <li class="js-currentScore">Score: 0</li>
         </ul>
     </header>
 
     <main>
-        <form action="#">
-            <fieldset>
-                <legend>Fill in the missing part of this movie quote: "Houston, we have ______." - Apollo 13, 1995</legend>
-                <label for="answer1"><input type="radio" name="answer" id="answer1">a Martian</label>
-                <label for="answer2"><input type="radio" name="answer" id="answer2">an issue</label>
-                <label for="answer3"><input type="radio" name="answer" id="answer3">a problem</label>
-                <label for="answer4"><input type="radio" name="answer" id="answer4">a party going on up here</label>
-                <button type="submit">Submit</button>
-            </fieldset>
-        </form>
+        <!-- example start page HTML -->
+        <section class="js-questionBox">
+            <p>This quiz will test your pop culture knowledge by asking you to pick the right words to finish famous movie quotes. Please click Start to begin.</p>
+            <button id="startQuiz" class="button" type="submit">Start</button>
+        </section>
+
+        <!-- example question HTML -->
+        <section class="js-questionBox">
+            <form action="#">
+                <fieldset>
+                    <legend>Fill in the missing part of this movie quote:</legend>
+                    <p><q>May the _____ be with you.</q> - <cite>Star Wars</cite>, 1977</p>
+                    <img class="movieImg" src="images/sw_ep4_0380.jpg" alt="Scene from Star Wars">
+                    <label for="answer1"><input type="radio" name="answer" id="answer1" value="Focus"> Focus</label><br>
+                    <label for="answer2"><input type="radio" name="answer" id="answer2" value="Force"> Force</label><br>
+                    <label for="answer3"><input type="radio" name="answer" id="answer3" value="Horse"> Horse</label><br>
+                    <label for="answer4"><input type="radio" name="answer" id="answer4" value="Schwartz"> Schwartz</label><br>
+                    <button id="submitAnswer" class="button" type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </section>
+
+        <!-- example right answer HTML -->
+        <section class="js-questionBox">
+            <p>Great job! You got it right!</p>
+            <img class="movieImg" src="images/l9Tllo1thElT5gvVOU.gif" alt="a crowd applauding">
+            <button id="nextQuestion" class="button" type="submit">Next Question</button>
+        </section>
+
+        <!-- example score HTML -->
+        <section class="js-questionBox">
+            <p>Oh no! That's not right!</p>
+            <p>The correct quote is:</p>
+            <p>"May the Force be with you!" - Star Wars, 1977</p>
+            <button id="nextQuestion" class="button" type="submit">Next Question</button>
+        </section>
+
     </main>
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

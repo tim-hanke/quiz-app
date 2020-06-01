@@ -4,15 +4,28 @@ function displayResults() {
     // stretch goal: also show different message/picture depending on
     // score range
 }
+
 function displayQuestion() {
     // this function will build an HTML form, using the STORE object, showing
     // the curent question, the four multiple choice answers, and a Submit
     // button and then insert that form into the DOM
+    const question = STORE.questions[STORE.currentQuestion];
+    const questionHTML = `
+        <form action="#">
+            <fieldset>
+                <legend>Fill in the missing part of this movie quote:</legend>
+                <p>${question.question}</p>
+                <img class="movieImg" src="images/sw_ep4_0380.jpg" alt="Scene from Star Wars">`
+
 }
 
 function handleRestartQuiz() {
     // on 'click' of Restart button, reset the score and current question
     // counters and call displayQuestion()
+    $('body').on('click','#resartQuiz', e => {
+        e.preventDefault();
+        console.log("Restart button clicked.");
+    })
 }
 
 function handleNextQuestion() {
@@ -22,6 +35,10 @@ function handleNextQuestion() {
     // sidenote: maybe make a function endOfQuiz() that returns true/false?
     // sidenote: how do I make the non-Submit buttons (Next Question, Start,
     //  Restart) 'clickable' by hitting Enter?
+    $('body').on('click','#nextQuestion', e => {
+        e.preventDefault();
+        console.log("Next Question button clicked");
+    })
 }
 
 function handleSubmitAnswer() {
@@ -35,11 +52,20 @@ function handleSubmitAnswer() {
     // and display a congratulatory remark and the Next Question button.
     // a wrong answer will display a consoling remark, the correct answer,
     // and the Next Question button.
+    $('body').on('click','#submitAnswer', e => {
+        e.preventDefault();
+        console.log("Submit button clicked.");
+    })
 }
 
 function handleStartQuiz() {
     // on 'click' of Start button, this will call
     // displayQuestion()
+    $('body').on('click','#startQuiz', e => {
+        e.preventDefault();
+        console.log("Start button clicked");
+        displayQuestion();
+    });
 }
 
 function handleQuizApp() {
