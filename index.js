@@ -41,6 +41,19 @@ function wrongAnswer() {
     STORE.currentQuestion++;
 }
 
+function shuffleArray(array) {
+    const shuffledArray = [...array];
+    let unshuffledLength = shuffledArray.length, randomPosition;
+    while (unshuffledLength) {
+        randomPosition = Math.floor(Math.random() * unshuffledLength--);
+        temp = shuffledArray[randomPosition];
+        shuffledArray[randomPosition] = shuffledArray[unshuffledLength];
+        shuffledArray[unshuffledLength] = temp;
+    }
+    console.log(shuffledArray);
+    return shuffledArray;
+}
+
 function displayQuestion() {
     // this function will build an HTML form, using the STORE object, showing
     // the curent question, the four multiple choice answers, and a Submit
@@ -53,8 +66,9 @@ function displayQuestion() {
                 <legend>Fill in the missing part of this movie quote:</legend>
                 <p>${question.question}</p>
                 <img class="movieImg" src=${question.imgSrc} alt=${question.imgAlt}>`;
-    for (let i = 0; i < question.answers.length; i++) {
-        questionHTML += `<label for=${i}><input type="radio" name="answer" id=${i} value="${question.answers[i]}"> ${question.answers[i]}</label><br>`
+    const shuffledAnswers = shuffleArray(question.answers);
+    for (let i = 0; i <shuffledAnswers.length; i++) {
+        questionHTML += `<label for=${i}><input type="radio" name="answer" id=${i} value="${shuffledAnswers[i]}"> ${shuffledAnswers[i]}</label><br>`
     }
     questionHTML += `
             <button id="submitAnswer" class="button" type="submit">Submit</button>
