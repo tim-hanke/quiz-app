@@ -3,28 +3,76 @@ function displayResults() {
     // button
     // stretch goal: also show different message/picture depending on
     // score range
+    const resultsHTML = `
+        <p>You scored ${STORE.score} out of ${STORE.questions.length}!</p>
+        <button id="restartQuiz" class="button" type="submit">Restart Quiz</button>`;
+    $('.js-questionBox').html(resultsHTML);
+}
+
+function updateQuestionAndScore() {
+    const currentQuestionHTML = `Question: ${STORE.currentQuestion+1}/${STORE.questions.length}`;
+    $('.js-currentQuestion').html(currentQuestionHTML);
+    const currentScoreHTML = `Score: ${STORE.score}`;
+    $('.js-currentScore').html(currentScoreHTML);
+}
+
+function rightAnswer() {
+    let rightAnswerHTML = `
+        <p>Great job! You got it right!</p>
+        <img class="movieImg" src="images/l9Tllo1thElT5gvVOU.gif" alt="a crowd applauding">
+        <button id="nextQuestion" class="button" type="submit">Next Question</button>`;
+    $('.js-questionBox').html(rightAnswerHTML);
+    STORE.score++;
+    updateQuestionAndScore();
+    STORE.currentQuestion++;
+}
+
+function wrongAnswer() {
+    let wrongAnswerHTML = `
+        <p>Oh no! You didn't get it right.</p>
+        <p>The correct answer is:</p>`;
+    wrongAnswerHTML += `
+        <p>Please press Enter or click Next Question.</p>
+        <button id="nextQuestion" class="button" type="submit">Next Question</button>`;
+    $('.js-questionBox').html(wrongAnswerHTML);
+    STORE.currentQuestion++;
 }
 
 function displayQuestion() {
     // this function will build an HTML form, using the STORE object, showing
     // the curent question, the four multiple choice answers, and a Submit
     // button and then insert that form into the DOM
+    updateQuestionAndScore();
     const question = STORE.questions[STORE.currentQuestion];
-    const questionHTML = `
+    let questionHTML = `
         <form action="#">
             <fieldset>
                 <legend>Fill in the missing part of this movie quote:</legend>
                 <p>${question.question}</p>
-                <img class="movieImg" src="images/sw_ep4_0380.jpg" alt="Scene from Star Wars">`
+                <img class="movieImg" src=${question.imgSrc} alt=${question.imgAlt}>`;
+    for (let i = 0; i < question.answers.length; i++) {
+        questionHTML += `<label for=${i}><input type="radio" name="answer" id=${i} value="${question.answers[i]}"> ${question.answers[i]}</label><br>`
+    }
+    questionHTML += `
+            <button id="submitAnswer" class="button" type="submit">Submit</button>
+            <p id="noneSelected" hidden>Please select an answer.</p>
+        </fieldset>
+    </form>`;
+    // questionHTML = startingHTML.concat(endingHTML);
+    $(".js-questionBox").html(questionHTML);
 
 }
 
 function handleRestartQuiz() {
     // on 'click' of Restart button, reset the score and current question
     // counters and call displayQuestion()
-    $('body').on('click','#resartQuiz', e => {
+    $('body').on('click','#restartQuiz', e => {
         e.preventDefault();
         console.log("Restart button clicked.");
+        STORE.currentQuestion = 0;
+        STORE.score = 0;
+        updateQuestionAndScore();
+        displayQuestion();
     })
 }
 
@@ -38,8 +86,10 @@ function handleNextQuestion() {
     $('body').on('click','#nextQuestion', e => {
         e.preventDefault();
         console.log("Next Question button clicked");
+        STORE.currentQuestion === STORE.questions.length ? displayResults() : displayQuestion();
     })
 }
+
 
 function handleSubmitAnswer() {
     // on 'click' of Submit button on a question, this will compare
@@ -54,8 +104,24 @@ function handleSubmitAnswer() {
     // and the Next Question button.
     $('body').on('click','#submitAnswer', e => {
         e.preventDefault();
-        console.log("Submit button clicked.");
+        // first we see if a radio button is checked, if nothing is
+        // checked $("input[name=answer]:checked").val() will evaluate as undefined
+        if ($("input[name=answer]:checked").val()) {
+            console.log("an answer is selected");
+            // then we compare the selected radio button to our correct answer
+            // (using the index of the correct answer in our answers array)
+            // and show rightAnswer() or wrongAnswer() 
+            console.log($("input[name=answer]:checked").val());
+            console.log(STORE.questions[STORE.currentQuestion].answers[STORE.questions[STORE.currentQuestion].correct]);
+            $("input[name=answer]:checked").val() === STORE.questions[STORE.currentQuestion].answers[STORE.questions[STORE.currentQuestion].correct] ? rightAnswer() : wrongAnswer();
+        } else {
+            console.log("no answer is selected");
+            // if an answer isn't selected, show the hidden
+            // <p>Please select an answer.</p>
+            $("#noneSelected").removeAttr("hidden");
+        }
     })
+    // temporary test
 }
 
 function handleStartQuiz() {
