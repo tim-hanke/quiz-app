@@ -56,7 +56,8 @@ const STORE = {
                 "You do not talk about Fight Club.",
                 "If it’s your first time, you have to bring chips.",
                 "No biting, no eye gouging, no fish hooking.",
-                "Try your best."
+                "Try your best.",
+                "No running by the pool."
             ],
             correct: 0
         },
