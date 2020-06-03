@@ -20,7 +20,7 @@ function rightAnswer() {
     let rightAnswerHTML = `
         <p>Great job! You got it right!</p>
         <img class="movieImg" src="images/l9Tllo1thElT5gvVOU.gif" alt="a crowd applauding">
-        <button id="nextQuestion" class="button" type="submit">Next Question</button>`;
+        <button id="nextQuestion" class="button" type="submit">${STORE.currentQuestion+1 === STORE.questions.length ? "Show Results" : "Next Question"}</button>`;
     $('.js-questionBox').html(rightAnswerHTML);
     STORE.score++;
     updateQuestionAndScore();
@@ -36,7 +36,7 @@ function wrongAnswer() {
     wrongAnswerHTML += `${question.replace(/_+/m, answer)}`;
     wrongAnswerHTML += `
         <img class="movieImg" src="images/thumbsdown.gif" alt="Joaquin Phoenix giving a thumbs down">
-        <button id="nextQuestion" class="button" type="submit">Next Question</button>`;
+        <button id="nextQuestion" class="button" type="submit">${STORE.currentQuestion+1 === STORE.questions.length ? "Show Results" : "Next Question"}</button>`;
     $('.js-questionBox').html(wrongAnswerHTML);
     STORE.currentQuestion++;
 }
@@ -138,7 +138,6 @@ function handleSubmitAnswer() {
             $("#noneSelected").removeAttr("hidden");
         }
     })
-    // temporary test
 }
 
 function handleStartQuiz() {
