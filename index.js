@@ -31,8 +31,11 @@ function wrongAnswer() {
     let wrongAnswerHTML = `
         <p>Oh no! You didn't get it right.</p>
         <p>The correct answer is:</p>`;
+    let question = STORE.questions[STORE.currentQuestion].question;
+    let answer = STORE.questions[STORE.currentQuestion].answers[STORE.questions[STORE.currentQuestion].correct];
+    wrongAnswerHTML += `${question.replace(/_+/m, answer)}`;
     wrongAnswerHTML += `
-        <p>Please press Enter or click Next Question.</p>
+        <img class="movieImg" src="images/thumbsdown.gif" alt="Joaquin Phoenix giving a thumbs down">
         <button id="nextQuestion" class="button" type="submit">Next Question</button>`;
     $('.js-questionBox').html(wrongAnswerHTML);
     STORE.currentQuestion++;
