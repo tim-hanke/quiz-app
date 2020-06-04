@@ -65,6 +65,7 @@ fieldset {
     background-color: #eb6e80;
     border: 10px solid #eb6e80;
     border-radius: 5px;
+    font-size: large;
 }
 
 .button:hover, .button:focus {
