@@ -24,18 +24,30 @@ const STORE = {
             ],
             correct: 0
         },
-        {//3
-            question: "<q>You're gonna need a bigger ____.</q> - <cite>Jaws</cite>, 1975",
-            imgSrc: "images/jaws_scheider_still.jpg",
-            imgAlt: "Scene from Jaws",
+        {
+            question: "<q>You had me at ____.</q> - <cite>Jerry Maguire</cite>, 1996",
+            imgSrc: "images/jerry_maguire_1999_26.jpg",
+            imgAlt: "Scene from Jerry Maguire",
             answers: [
-                "boat",
-                "fishing pole",
-                "net",
-                "shark"
+                "hello",
+                "meow",
+                "cheerio",
+                "hey you"
             ],
             correct: 0
         },
+        // {//3
+        //     question: "<q>You're gonna need a bigger ____.</q> - <cite>Jaws</cite>, 1975",
+        //     imgSrc: "images/jaws_scheider_still.jpg",
+        //     imgAlt: "Scene from Jaws",
+        //     answers: [
+        //         "boat",
+        //         "fishing pole",
+        //         "net",
+        //         "shark"
+        //     ],
+        //     correct: 0
+        // },
         {//4
             question: "<q>Frankly, my dear, I don't give ______.</q> - <cite>Gone With the Wind</cite>, 1939",
             imgSrc: "images/gone_with_wind_1939_55.jpg",
