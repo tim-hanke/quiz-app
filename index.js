@@ -3,9 +3,22 @@ function displayResults() {
     // button
     // stretch goal: also show different message/picture depending on
     // score range
-    const resultsHTML = `
-        <p>You scored ${STORE.score} out of ${STORE.questions.length}!</p>
-        <button id="restartQuiz" class="button" type="submit">Restart Quiz</button>`;
+    let resultsHTML = `
+        <p>You scored ${STORE.score} out of ${STORE.questions.length}!</p>`
+    const scorePercentage = STORE.score / STORE.questions.length;
+    console.log(scorePercentage);
+    if (scorePercentage >= 0.75) {
+        resultsHTML += `<p>You did great!</p>
+            <img class="movieImg" src="images/rocky.gif" alt="Rocky Balboa with arms raised in victory">`;
+    } else if (scorePercentage >= 0.4) {
+        resultsHTML += `<p>You did pretty good!</p>
+            <p>Keep training!</p>
+            <img class="movieImg" src="images/R3u2.gif" alt="Luke Skywalker training with a lightsaber">`;
+    } else {
+        resultsHTML += `<p>I'm sure you gave it your best, but it just wasn't your day!</p>
+            <img class="movieImg" src="images/potatohead.gif" alt="Mr. Potato Head pulling his own arms off">`;
+    };
+    resultsHTML += `<button id="restartQuiz" class="button" type="submit">Restart Quiz</button>`;
     $('.js-questionBox').html(resultsHTML);
 }
 
@@ -30,7 +43,7 @@ function rightAnswer() {
 function wrongAnswer() {
     let wrongAnswerHTML = `
         <p>Oh no! You didn't get it right.</p>
-        <p>The correct answer is:</p>`;
+        <p>The correct quote is:</p>`;
     let question = STORE.questions[STORE.currentQuestion].question;
     let answer = STORE.questions[STORE.currentQuestion].answers[STORE.questions[STORE.currentQuestion].correct];
     wrongAnswerHTML += `${question.replace(/_+/m, answer)}`;
