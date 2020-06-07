@@ -135,5 +135,6 @@ const STORE = {
         }
     ],
     currentQuestion: 0,
+    currentQuestionCorrect: null,
     score: 0,
 }
