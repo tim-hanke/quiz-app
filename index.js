@@ -6,7 +6,6 @@ function displayResults() {
     let resultsHTML = `
         <p>You scored ${STORE.score} out of ${STORE.questions.length}!</p>`
     const scorePercentage = STORE.score / STORE.questions.length;
-    console.log(scorePercentage);
     if (scorePercentage >= 0.75) {
         resultsHTML += `<p>You did great!</p>
             <img class="movieImg" src="images/rocky.gif" alt="Rocky Balboa with arms raised in victory">`;
@@ -63,7 +62,6 @@ function shuffleArray(array) {
         shuffledArray[randomPosition] = shuffledArray[unshuffledLength];
         shuffledArray[unshuffledLength] = temp;
     }
-    console.log(shuffledArray);
     return shuffledArray;
 }
 
@@ -98,7 +96,6 @@ function handleRestartQuiz() {
     // counters and call displayQuestion()
     $('body').on('click','#restartQuiz', e => {
         e.preventDefault();
-        console.log("Restart button clicked.");
         STORE.currentQuestion = 0;
         STORE.score = 0;
         updateQuestionAndScore();
@@ -115,7 +112,6 @@ function handleNextQuestion() {
     //  Restart) 'clickable' by hitting Enter?
     $('body').on('click','#nextQuestion', e => {
         e.preventDefault();
-        console.log("Next Question button clicked");
         STORE.currentQuestion === STORE.questions.length ? displayResults() : displayQuestion();
     })
 }
@@ -137,15 +133,11 @@ function handleSubmitAnswer() {
         // first we see if a radio button is checked, if nothing is
         // checked $("input[name=answer]:checked").val() will evaluate as undefined
         if ($("input[name=answer]:checked").val()) {
-            console.log("an answer is selected");
             // then we compare the selected radio button to our correct answer
             // (using the index of the correct answer in our answers array)
             // and show rightAnswer() or wrongAnswer() 
-            console.log($("input[name=answer]:checked").val());
-            console.log(STORE.questions[STORE.currentQuestion].answers[STORE.questions[STORE.currentQuestion].correct]);
             $("input[name=answer]:checked").val() === STORE.questions[STORE.currentQuestion].answers[STORE.questions[STORE.currentQuestion].correct] ? rightAnswer() : wrongAnswer();
         } else {
-            console.log("no answer is selected");
             // if an answer isn't selected, show the hidden
             // <p>Please select an answer.</p>
             $("#noneSelected").removeAttr("hidden");
@@ -158,7 +150,6 @@ function handleStartQuiz() {
     // displayQuestion()
     $('body').on('click','#startQuiz', e => {
         e.preventDefault();
-        console.log("Start button clicked");
         displayQuestion();
     });
 }
