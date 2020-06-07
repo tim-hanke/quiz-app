@@ -76,7 +76,7 @@ function displayQuestion() {
             <fieldset>
                 <legend>Fill in the missing part of this movie quote:</legend>
                 <p>${question.question}</p>
-                <img class="movieImg" src=${question.imgSrc} alt=${question.imgAlt}>`;
+                <img class="movieImg" src="${question.imgSrc}" alt="${question.imgAlt}">`;
     const shuffledAnswers = shuffleArray(question.answers);
     for (let i = 0; i <shuffledAnswers.length; i++) {
         questionHTML += `<label for=${i}><input type="radio" name="answer" id=${i} value="${shuffledAnswers[i]}"> ${shuffledAnswers[i]}</label><br>`
@@ -98,7 +98,6 @@ function handleRestartQuiz() {
         e.preventDefault();
         STORE.currentQuestion = 0;
         STORE.score = 0;
-        updateQuestionAndScore();
         displayQuestion();
     })
 }
